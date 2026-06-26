@@ -1,0 +1,37 @@
+key: uptime-kuma
+name: Uptime Kuma
+description: Self-hosted status & uptime monitoring with beautiful dashboards.
+category: app
+icon_url: https://uptime.kuma.pet/img/icon.svg
+default_image: louislam/uptime-kuma:1
+volumes:
+  - data:/app/data
+exposed_ports:
+  - "3001"
+author: serverops
+version: "1.0.0"
+compose_template: |
+  services:
+    {{.Name}}:
+      image: {{.Image}}
+      volumes:
+        - data:/app/data
+      expose:
+        - "3001"
+      healthcheck:
+        test: ["CMD", "extra/healthcheck"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+      labels:
+        com.myserver.service-uuid: "{{.UUID}}"
+      networks:
+        - myserver
+      restart: unless-stopped
+
+  volumes:
+    data:
+
+  networks:
+    myserver:
+      external: true

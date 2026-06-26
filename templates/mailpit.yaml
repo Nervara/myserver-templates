@@ -1,0 +1,46 @@
+key: mailpit
+name: Mailpit
+description: Email & SMTP testing tool with web UI — catch-all SMTP server for development.
+category: tool
+icon_url: https://github.com/axllent/mailpit/raw/develop/server/ui-src/favicon.svg
+default_image: axllent/mailpit:latest
+default_env:
+  MP_SMTP_AUTH_ACCEPT_ANY: "1"
+  MP_SMTP_AUTH_ALLOW_INSECURE: "1"
+volumes:
+  - data:/data
+exposed_ports:
+  - "1025"
+  - "8025"
+author: serverops
+version: "1.0.0"
+compose_template: |
+  services:
+    {{.Name}}:
+      image: {{.Image}}
+      environment:
+        MP_SMTP_AUTH_ACCEPT_ANY: "{{index .Settings "MP_SMTP_AUTH_ACCEPT_ANY"}}"
+        MP_SMTP_AUTH_ALLOW_INSECURE: "{{index .Settings "MP_SMTP_AUTH_ALLOW_INSECURE"}}"
+        MP_DATA_FILE: /data/mailpit.db
+      volumes:
+        - data:/data
+      expose:
+        - "1025"
+        - "8025"
+      healthcheck:
+        test: ["CMD", "wget", "-q", "--spider", "http://localhost:8025/readyz"]
+        interval: 15s
+        timeout: 5s
+        retries: 5
+      labels:
+        com.myserver.service-uuid: "{{.UUID}}"
+      networks:
+        - myserver
+      restart: unless-stopped
+
+  volumes:
+    data:
+
+  networks:
+    myserver:
+      external: true

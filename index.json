@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "entries": [
+    { "key": "n8n",         "path": "templates/n8n.yaml",         "format": "native", "author": "serverops" },
+    { "key": "uptime-kuma", "path": "templates/uptime-kuma.yaml", "format": "native", "author": "serverops" },
+    { "key": "qdrant",      "path": "templates/qdrant.yaml",      "format": "native", "author": "serverops" },
+    { "key": "meilisearch", "path": "templates/meilisearch.yaml", "format": "native", "author": "serverops" },
+    { "key": "pocketbase",  "path": "templates/pocketbase.yaml",  "format": "native", "author": "serverops" },
+    { "key": "mailpit",     "path": "templates/mailpit.yaml",     "format": "native", "author": "serverops" }
+  ]
+}

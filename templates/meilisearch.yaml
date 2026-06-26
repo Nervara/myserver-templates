@@ -1,0 +1,45 @@
+key: meilisearch
+name: Meilisearch
+description: Lightning-fast, typo-tolerant search engine with developer-friendly API.
+category: search
+icon_url: https://www.meilisearch.com/favicon.svg
+default_image: getmeili/meilisearch:v1.11
+default_env:
+  MEILI_MASTER_KEY: changeme-please-32-chars-minimum
+  MEILI_NO_ANALYTICS: "true"
+  MEILI_ENV: production
+volumes:
+  - data:/meili_data
+exposed_ports:
+  - "7700"
+author: serverops
+version: "1.0.0"
+compose_template: |
+  services:
+    {{.Name}}:
+      image: {{.Image}}
+      environment:
+        MEILI_MASTER_KEY: "{{index .Settings "MEILI_MASTER_KEY"}}"
+        MEILI_NO_ANALYTICS: "{{index .Settings "MEILI_NO_ANALYTICS"}}"
+        MEILI_ENV: "{{index .Settings "MEILI_ENV"}}"
+      volumes:
+        - data:/meili_data
+      expose:
+        - "7700"
+      healthcheck:
+        test: ["CMD", "wget", "-q", "--spider", "http://localhost:7700/health"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+      labels:
+        com.myserver.service-uuid: "{{.UUID}}"
+      networks:
+        - myserver
+      restart: unless-stopped
+
+  volumes:
+    data:
+
+  networks:
+    myserver:
+      external: true

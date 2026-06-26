@@ -1,0 +1,49 @@
+key: n8n
+name: n8n
+description: Fair-code workflow automation — connect APIs, databases, and services visually.
+category: app
+icon_url: https://n8n.io/favicon.ico
+default_image: n8nio/n8n:latest
+default_env:
+  N8N_ENCRYPTION_KEY: changeme-32-character-key-please
+  N8N_BASIC_AUTH_ACTIVE: "true"
+  N8N_BASIC_AUTH_USER: admin
+  N8N_BASIC_AUTH_PASSWORD: changeme
+  N8N_RUNNERS_ENABLED: "true"
+volumes:
+  - data:/home/node/.n8n
+exposed_ports:
+  - "5678"
+author: serverops
+version: "1.0.0"
+compose_template: |
+  services:
+    {{.Name}}:
+      image: {{.Image}}
+      environment:
+        N8N_ENCRYPTION_KEY: "{{index .Settings "N8N_ENCRYPTION_KEY"}}"
+        N8N_BASIC_AUTH_ACTIVE: "{{index .Settings "N8N_BASIC_AUTH_ACTIVE"}}"
+        N8N_BASIC_AUTH_USER: "{{index .Settings "N8N_BASIC_AUTH_USER"}}"
+        N8N_BASIC_AUTH_PASSWORD: "{{index .Settings "N8N_BASIC_AUTH_PASSWORD"}}"
+        N8N_RUNNERS_ENABLED: "{{index .Settings "N8N_RUNNERS_ENABLED"}}"
+      volumes:
+        - data:/home/node/.n8n
+      expose:
+        - "5678"
+      healthcheck:
+        test: ["CMD", "wget", "-q", "--spider", "http://localhost:5678/healthz"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+      labels:
+        com.myserver.service-uuid: "{{.UUID}}"
+      networks:
+        - myserver
+      restart: unless-stopped
+
+  volumes:
+    data:
+
+  networks:
+    myserver:
+      external: true

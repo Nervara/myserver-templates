@@ -1,0 +1,37 @@
+key: pocketbase
+name: PocketBase
+description: Open-source backend in a single file — auth, realtime DB, file storage, admin UI.
+category: app
+icon_url: https://pocketbase.io/images/logo.svg
+default_image: ghcr.io/muchobien/pocketbase:latest
+volumes:
+  - data:/pb_data
+exposed_ports:
+  - "8090"
+author: serverops
+version: "1.0.0"
+compose_template: |
+  services:
+    {{.Name}}:
+      image: {{.Image}}
+      volumes:
+        - data:/pb_data
+      expose:
+        - "8090"
+      healthcheck:
+        test: ["CMD", "wget", "-q", "--spider", "http://localhost:8090/api/health"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+      labels:
+        com.myserver.service-uuid: "{{.UUID}}"
+      networks:
+        - myserver
+      restart: unless-stopped
+
+  volumes:
+    data:
+
+  networks:
+    myserver:
+      external: true
