@@ -1,0 +1,9 @@
+key: kyverno
+name: Kyverno
+description: Kubernetes-native policy engine for validation, mutation, and generation. Cluster controller; no public route needed.
+category: security
+chart_repo_url: https://kyverno.github.io/kyverno/
+chart_name: kyverno
+docs_url: https://kyverno.io/docs/
+values_yaml: |
+  # Defaults are a sane starting point; tune admission webhooks per cluster.

@@ -1,0 +1,9 @@
+key: metrics-server
+name: Metrics Server
+description: Cluster-wide resource metrics for the Kubernetes Metrics API (powers kubectl top and HPA). Cluster component; no public route.
+category: observability
+chart_repo_url: https://kubernetes-sigs.github.io/metrics-server/
+chart_name: metrics-server
+docs_url: https://github.com/kubernetes-sigs/metrics-server
+values_yaml: |
+  # k3s already bundles metrics-server; install only on clusters that disabled it.

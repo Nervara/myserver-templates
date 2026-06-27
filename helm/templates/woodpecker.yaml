@@ -1,0 +1,11 @@
+key: woodpecker
+name: Woodpecker CI
+description: Lightweight container-native CI/CD engine with a web UI. ClusterIP service; set the agent secret and host before use.
+category: ci-cd
+chart_repo_url: https://woodpecker-ci.org/
+chart_name: woodpecker
+docs_url: https://woodpecker-ci.org/docs/intro
+values_yaml: |
+  server:
+    service:
+      type: ClusterIP

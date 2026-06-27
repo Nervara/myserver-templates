@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "key": "cert-manager",
+      "path": "templates/cert-manager.yaml"
+    },
+    {
+      "key": "external-secrets",
+      "path": "templates/external-secrets.yaml"
+    },
+    {
+      "key": "gitlab-runner",
+      "path": "templates/gitlab-runner.yaml"
+    },
+    {
+      "key": "headlamp",
+      "path": "templates/headlamp.yaml"
+    },
+    {
+      "key": "kyverno",
+      "path": "templates/kyverno.yaml"
+    },
+    {
+      "key": "metabase",
+      "path": "templates/metabase.yaml"
+    },
+    {
+      "key": "metrics-server",
+      "path": "templates/metrics-server.yaml"
+    },
+    {
+      "key": "uptime-kuma",
+      "path": "templates/uptime-kuma.yaml"
+    },
+    {
+      "key": "woodpecker",
+      "path": "templates/woodpecker.yaml"
+    }
+  ]
+}

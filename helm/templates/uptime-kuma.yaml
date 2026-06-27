@@ -1,0 +1,10 @@
+key: uptime-kuma
+name: Uptime Kuma
+description: Self-hosted uptime monitoring with a status-page UI. ClusterIP service; chart ingress disabled in favour of MyServer routing.
+category: observability
+chart_repo_url: https://helm.irsigler.cloud
+chart_name: uptime-kuma
+docs_url: https://github.com/louislam/uptime-kuma
+values_yaml: |
+  ingress:
+    enabled: false

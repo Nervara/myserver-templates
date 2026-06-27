@@ -1,0 +1,10 @@
+key: gitlab-runner
+name: GitLab Runner
+description: CI/CD job runner for GitLab. Set gitlabUrl and a registration token before installing.
+category: ci-cd
+chart_repo_url: https://charts.gitlab.io
+chart_name: gitlab-runner
+docs_url: https://docs.gitlab.com/runner/install/kubernetes.html
+values_yaml: |
+  gitlabUrl: https://gitlab.com
+  runnerRegistrationToken: "REPLACE_ME"

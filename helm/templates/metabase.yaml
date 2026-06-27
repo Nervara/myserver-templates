@@ -1,0 +1,10 @@
+key: metabase
+name: Metabase
+description: Open-source business intelligence and dashboards. ClusterIP service; configure an external database before production.
+category: productivity
+chart_repo_url: https://pmint93.github.io/helm-charts
+chart_name: metabase
+docs_url: https://www.metabase.com/docs/
+values_yaml: |
+  service:
+    type: ClusterIP

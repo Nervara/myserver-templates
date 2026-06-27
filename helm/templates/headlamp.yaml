@@ -1,0 +1,10 @@
+key: headlamp
+name: Headlamp
+description: Web UI dashboard for Kubernetes clusters. ClusterIP service for MyServer routing.
+category: devtools
+chart_repo_url: https://kubernetes-sigs.github.io/headlamp/
+chart_name: headlamp
+docs_url: https://headlamp.dev
+values_yaml: |
+  service:
+    type: ClusterIP
